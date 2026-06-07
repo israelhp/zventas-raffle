@@ -106,7 +106,7 @@ export default function AdminDashboard({ go, onLogout }) {
       </div>
 
       {/* stats */}
-      <div className="row gap-4" style={{ flexWrap: 'wrap', marginBottom: 24 }}>
+      <div className="stats-grid">
         <Stat icon="ticket" label="Cupones" value={st.totalCupones} sub={`Meta ${st.meta} · ${st.pct}%`} />
         <Stat icon="users" label="Participantes" value={st.participantes} sub={`${st.pendientes} pendientes`} />
         <Stat icon="checkCircle" label="Confirmados" value={st.cuponesConfirmados} sub="cupones pagados" />
