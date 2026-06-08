@@ -25,7 +25,7 @@ function exportarSorteo() {
         'Nombre': p.nombre,
         'Teléfono': SorteoStore.maskPhone(p.telefono),
         'Correo': p.correo || '',
-        'Factura': p.factura,
+        'Compra (Q)': p.monto,
         'Monto (Q)': p.monto,
         'Estado': p.estado === 'confirmado' ? 'Confirmado' : 'Pendiente',
         'Fecha registro': new Date(p.fecha).toLocaleDateString('es-GT'),
@@ -110,7 +110,7 @@ export default function AdminDashboard({ go, onLogout }) {
         <Stat icon="ticket" label="Cupones" value={st.totalCupones} sub={`Meta ${st.meta} · ${st.pct}%`} />
         <Stat icon="users" label="Participantes" value={st.participantes} sub={`${st.pendientes} pendientes`} />
         <Stat icon="checkCircle" label="Confirmados" value={st.cuponesConfirmados} sub="cupones pagados" />
-        <Stat icon="coins" label="Ingresos" value={Q(st.ingresos)} sub="facturas registradas" />
+        <Stat icon="coins" label="Ingresos" value={Q(st.ingresos)} sub="compras registradas" />
       </div>
 
       {/* tabs */}

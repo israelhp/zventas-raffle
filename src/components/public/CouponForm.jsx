@@ -104,7 +104,7 @@ function CouponSuccess({ participant, onReset }) {
       </div>
       <h2 style={{ fontSize: 25, marginBottom: 8 }}>¡Listo, {participant.nombre.split(' ')[0]}!</h2>
       <p style={{ fontSize: 14.5, color: 'var(--ink-2)', fontWeight: 500, marginBottom: 22 }}>
-        Tu factura <b className="coupon-code" style={{ color: 'var(--ink)' }}>#{participant.factura}</b> por {Q(participant.monto)} te dio{' '}
+        Tu compra de <b style={{ color: 'var(--ink)' }}>{Q(participant.monto)}</b> te dio{' '}
         <b>{participant.coupons.length}</b> {participant.coupons.length === 1 ? 'cupón' : 'cupones'}.
       </p>
 
@@ -132,7 +132,7 @@ function CouponSuccess({ participant, onReset }) {
           <b style={{ fontSize: 13.5 }}>Validación pendiente</b>
         </div>
         <p style={{ fontSize: 12.5, color: 'oklch(0.45 0.08 70)', lineHeight: 1.5, fontWeight: 500 }}>
-          Presentá tu factura física para validar tus cupones. Una vez confirmada, tu estado pasará a <b>confirmado</b> y entrás al sorteo.
+          Presentá tu comprobante de compra para validar tus cupones. Una vez confirmada, tu estado pasará a <b>confirmado</b> y entrás al sorteo.
         </p>
       </div>
 
@@ -141,7 +141,7 @@ function CouponSuccess({ participant, onReset }) {
           <Icon name="copy" size={18} /> Copiar mis números
         </button>
         <button className="btn btn-ghost" onClick={onReset}>
-          <Icon name="ticket" size={18} /> Registrar otra factura
+          <Icon name="ticket" size={18} /> Registrar otra compra
         </button>
       </div>
       {toast}
@@ -152,7 +152,7 @@ function CouponSuccess({ participant, onReset }) {
 export default function CouponForm() {
   const cfg = SorteoStore.config();
   const sorteo = SorteoStore.activeSorteo();
-  const [data, setData] = useState({ nombre: '', telefono: '', correo: '', factura: '', monto: '', acepto: false });
+  const [data, setData] = useState({ nombre: '', telefono: '', correo: '', monto: '', acepto: false });
   const [errors, setErrors] = useState({});
   const [done, setDone] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -185,7 +185,6 @@ export default function CouponForm() {
     if (data.nombre.trim().length < 4) e.nombre = 'Ingresá tu nombre completo.';
     if (data.telefono.replace(/\D/g, '').length < 8) e.telefono = 'Teléfono de 8 dígitos.';
     if (data.correo && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.correo)) e.correo = 'Correo no válido.';
-    if (data.factura.trim().length < 3) e.factura = 'Ingresá el número de factura.';
     if (montoNum < cfg.montoPorCupon) e.monto = `El monto mínimo es ${Q(cfg.montoPorCupon)} (1 cupón).`;
     if (!data.acepto) e.acepto = 'Debés aceptar los términos.';
     setErrors(e);
@@ -210,7 +209,7 @@ export default function CouponForm() {
     return (
       <CouponSuccess
         participant={done}
-        onReset={() => { setData({ nombre: '', telefono: '', correo: '', factura: '', monto: '', acepto: false }); setDone(null); }}
+        onReset={() => { setData({ nombre: '', telefono: '', correo: '', monto: '', acepto: false }); setDone(null); }}
       />
     );
   }
@@ -220,9 +219,9 @@ export default function CouponForm() {
       <span className="chip brand" style={{ marginBottom: 14 }}>
         <Icon name="ticket" size={14} /> Obtené tus cupones
       </span>
-      <h2 style={{ fontSize: 24, marginBottom: 6 }}>Registrá tu factura</h2>
+      <h2 style={{ fontSize: 24, marginBottom: 6 }}>Registrá tu compra</h2>
       <p style={{ fontSize: 14, color: 'var(--ink-2)', marginBottom: 20, fontWeight: 500 }}>
-        Completá tus datos y los de tu factura. Tus cupones se generan al instante.
+        Completá tus datos y el monto de tu compra. Tus cupones se generan al instante.
       </p>
 
       {errors.global && (
@@ -269,29 +268,19 @@ export default function CouponForm() {
             />
           </Field>
         </div>
-        <div className="two-col">
-          <Field label="Número de factura" error={errors.factura}>
+        <Field label="Monto de la compra" error={errors.monto}>
+          <div style={{ position: 'relative' }}>
+            <span style={{ position: 'absolute', left: 13, top: 13, color: 'var(--muted)', fontWeight: 700, fontSize: 15 }}>Q</span>
             <input
-              className={'input' + (errors.factura ? ' err' : '')}
-              value={data.factura}
-              onChange={(e) => set('factura', e.target.value)}
-              placeholder="Ej. 458210"
+              className={'input' + (errors.monto ? ' err' : '')}
+              value={data.monto}
+              inputMode="decimal"
+              style={{ paddingLeft: 28 }}
+              onChange={(e) => set('monto', e.target.value)}
+              placeholder="0.00"
             />
-          </Field>
-          <Field label="Monto de la factura" error={errors.monto}>
-            <div style={{ position: 'relative' }}>
-              <span style={{ position: 'absolute', left: 13, top: 13, color: 'var(--muted)', fontWeight: 700, fontSize: 15 }}>Q</span>
-              <input
-                className={'input' + (errors.monto ? ' err' : '')}
-                value={data.monto}
-                inputMode="decimal"
-                style={{ paddingLeft: 28 }}
-                onChange={(e) => set('monto', e.target.value)}
-                placeholder="0.00"
-              />
-            </div>
-          </Field>
-        </div>
+          </div>
+        </Field>
 
         <div className="row" style={{
           justifyContent: 'space-between', alignItems: 'center',

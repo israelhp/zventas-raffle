@@ -64,7 +64,7 @@ export default function ParticipantsTable() {
               <tr>
                 <th>Participante</th>
                 <th>Contacto</th>
-                <th>Factura</th>
+                <th>Monto</th>
                 <th>Cupones</th>
                 <th>Estado</th>
                 <th></th>
@@ -86,8 +86,7 @@ export default function ParticipantsTable() {
                       <div style={{ fontSize: 13 }}>{SorteoStore.maskPhone(p.telefono)}</div>
                     </td>
                     <td>
-                      <div className="coupon-code" style={{ fontSize: 13, color: 'var(--ink)' }}>#{p.factura}</div>
-                      <div style={{ fontSize: 12, color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>{Q(p.monto)}</div>
+                      <div style={{ fontSize: 13, fontFamily: 'var(--font-mono)', color: 'var(--ink)', fontWeight: 700 }}>{Q(p.monto)}</div>
                     </td>
                     <td>
                       <div className="row" style={{ gap: 5, flexWrap: 'wrap', maxWidth: 200 }}>
