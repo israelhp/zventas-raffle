@@ -14,7 +14,7 @@ function ResultCard({ p, onSelect }) {
           <h3 style={{ fontSize: 18 }}>{p.nombre}</h3>
           <div className="row gap-3" style={{ color: 'var(--muted)', fontSize: 13, fontWeight: 600, flexWrap: 'wrap' }}>
             <span className="row gap-2"><Icon name="phone" size={14} /> {SorteoStore.maskPhone(p.telefono)}</span>
-            <span className="row gap-2"><Icon name="copy" size={14} /> {`Factura #${p.factura}`}</span>
+            <span className="row gap-2"><Icon name="coins" size={14} /> {Q(p.monto)}</span>
           </div>
         </div>
         <span className={'chip ' + (conf ? 'ok' : 'warn')}>
@@ -57,7 +57,7 @@ export default function SearchSection() {
     <div>
       <SectionHead kicker="Mis cupones" title="Buscá tus cupones" />
       <p style={{ fontSize: 15, color: 'var(--ink-2)', fontWeight: 500, marginTop: -12, marginBottom: 20 }}>
-        Escribí tu nombre, teléfono o número de factura.
+        Escribí tu nombre o número de teléfono.
       </p>
 
       <form className="row gap-3" onSubmit={run} style={{ marginBottom: 24, flexWrap: 'wrap', maxWidth: 620 }}>
@@ -80,7 +80,7 @@ export default function SearchSection() {
         <div className="card" style={{ padding: 36, textAlign: 'center', maxWidth: 620 }}>
           <h3 style={{ fontSize: 18, marginBottom: 6 }}>Sin resultados</h3>
           <p style={{ fontSize: 14, color: 'var(--ink-2)', fontWeight: 500 }}>
-            No encontramos cupones con "{q}". Revisá el dato o registrá tu factura arriba.
+            No encontramos cupones con "{q}". Revisá el dato o registrate arriba.
           </p>
         </div>
       )}

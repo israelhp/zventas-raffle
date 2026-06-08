@@ -168,7 +168,7 @@ export default function DrawPanel() {
             </span>
             <h2 style={{ fontSize: 'clamp(26px, 4vw, 36px)', marginBottom: 4 }}>{winner.participant.nombre}</h2>
             <p style={{ fontSize: 14.5, color: 'var(--ink-2)', fontWeight: 600 }}>
-              {SorteoStore.maskPhone(winner.participant.telefono)} · Factura #{winner.participant.factura}
+              {SorteoStore.maskPhone(winner.participant.telefono)} · Compra {Q(winner.participant.monto)}
             </p>
             <div className="row gap-3" style={{ marginTop: 22, flexWrap: 'wrap', justifyContent: 'center' }}>
               {!confirmed ? (

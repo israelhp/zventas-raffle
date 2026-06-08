@@ -20,7 +20,7 @@ export default function Home() {
 
   const steps = [
     { icon: 'ticket', t: 'Comprá en la tienda', d: `Por cada ${Q(cfg.montoPorCupon)} de consumo ganás 1 cupón para el sorteo.` },
-    { icon: 'bolt', t: 'Registrá tu factura', d: 'Ingresá tus datos y el número y monto de tu factura en el formulario.' },
+    { icon: 'bolt', t: 'Registrá tu compra', d: 'Ingresá tus datos y el monto de tu compra en el formulario.' },
     { icon: 'trophy', t: 'Participá en el sorteo', d: 'El día del sorteo transmitimos en vivo y elegimos el cupón ganador.' },
   ];
 
@@ -49,7 +49,7 @@ export default function Home() {
               <p style={{ fontSize: 16.5, color: 'var(--ink-2)', maxWidth: 480, lineHeight: 1.5, fontWeight: 500 }}>
                 {info.subtitulo}. Premio valorado en{' '}
                 <b style={{ color: 'var(--ink)' }}>{Q(info.valorPremio)}</b>.
-                Registrá tu factura y obtené tus cupones para participar.
+                Registrá tu compra y obtené tus cupones para participar.
               </p>
 
               {/* prize image */}

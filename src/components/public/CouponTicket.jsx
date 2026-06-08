@@ -55,7 +55,7 @@ function CouponTicket({ entry }) {
           <div className="ticket-meta">
             <div><div className="k">Titular</div><div className="v">{p.nombre}</div></div>
             <div><div className="k">Teléfono</div><div className="v">{SorteoStore.maskPhone(p.telefono)}</div></div>
-            <div><div className="k">Factura</div><div className="v coupon-code">#{p.factura}</div></div>
+            <div><div className="k">Compra</div><div className="v">{Q(p.monto)}</div></div>
             <div><div className="k">Monto</div><div className="v">{Q(p.monto)}</div></div>
             <div><div className="k">Fecha del sorteo</div><div className="v">{fecha}</div></div>
             <div>
