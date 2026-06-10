@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import SorteoStore from '../../store/sorteoStore';
-import { Q } from '../../utils/format';
 import Icon from '../ui/Icon';
 import { useToast } from '../ui/Toast';
 
@@ -54,9 +53,6 @@ function CouponTicket({ entry }) {
           </div>
           <div className="ticket-meta">
             <div><div className="k">Titular</div><div className="v">{p.nombre}</div></div>
-            <div><div className="k">Teléfono</div><div className="v">{SorteoStore.maskPhone(p.telefono)}</div></div>
-            <div><div className="k">Compra</div><div className="v">{Q(p.monto)}</div></div>
-            <div><div className="k">Monto</div><div className="v">{Q(p.monto)}</div></div>
             <div><div className="k">Fecha del sorteo</div><div className="v">{fecha}</div></div>
             <div>
               <div className="k">Estado</div>
