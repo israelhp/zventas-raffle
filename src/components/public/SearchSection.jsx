@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import SorteoStore from '../../store/sorteoStore';
-import { Q } from '../../utils/format';
 import Icon from '../ui/Icon';
 import SectionHead from './SectionHead';
 import { CouponTicketModal } from './CouponTicket';
@@ -12,17 +11,13 @@ function ResultCard({ p, onSelect }) {
       <div className="row" style={{ justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', marginBottom: 16 }}>
         <div className="col gap-2">
           <h3 style={{ fontSize: 18 }}>{p.nombre}</h3>
-          <div className="row gap-3" style={{ color: 'var(--muted)', fontSize: 13, fontWeight: 600, flexWrap: 'wrap' }}>
-            <span className="row gap-2"><Icon name="phone" size={14} /> {SorteoStore.maskPhone(p.telefono)}</span>
-            <span className="row gap-2"><Icon name="coins" size={14} /> {Q(p.monto)}</span>
-          </div>
         </div>
         <span className={'chip ' + (conf ? 'ok' : 'warn')}>
           <i className="dot"></i> {conf ? 'Confirmado' : 'Validación pendiente'}
         </span>
       </div>
       <span style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)' }}>
-        {p.coupons.length} {p.coupons.length === 1 ? 'cupón' : 'cupones'} · {Q(p.monto)}
+        {p.coupons.length} {p.coupons.length === 1 ? 'cupón' : 'cupones'}
       </span>
       <div className="row" style={{ gap: 10, flexWrap: 'wrap', marginTop: 10 }}>
         {p.coupons.map((c) => (
